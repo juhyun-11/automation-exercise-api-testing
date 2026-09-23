@@ -1,1 +1,201 @@
 
+{
+  "info": {
+    "_postman_id": "98ae85ee-f72c-4fd4-b749-f04b0e5cc898",
+    "name": "API-QA-Portfolio",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "46213342"
+  },
+  "item": [
+    {
+      "name": "01_Login",
+      "item": [
+        {
+          "name": "VL-01 Valid Credential",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const body = pm.response.json();\n\npm.test(\"HTTP status is 200\", function(){\n    pm.expect(pm.response.code).to.eql(200);\n});\npm.test(\"Business responseCode is 200\", function(){\n    pm.expect(body.responseCode).to.eql(200);\n});\npm.test(\"Login message is correct\",function(){\n    pm.expect(body.message).to.eql(\"User exists!\")\n});\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "{{test_email}}",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "{{test_password}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "https://automationexercise.com/api/verifyLogin",
+              "protocol": "https",
+              "host": [
+                "automationexercise",
+                "com"
+              ],
+              "path": [
+                "api",
+                "verifyLogin"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "VL-02 Invalid Password",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const body = pm.response.json();\npm.test(\"HTTP status is 200\", function(){\n    pm.expect(pm.response.code).to.eql(200);\n});\npm.test(\"Business reponseCode is 404\", function(){\n    pm.expect(body.responseCode).to.eql(404);\n});\npm.test(\"Login message is correct\",function(){\n    pm.expect(body.message).to.eql(\"User not found!\")\n})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "{{test_email}}",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "{{test_password}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "https://automationexercise.com/api/verifyLogin",
+              "protocol": "https",
+              "host": [
+                "automationexercise",
+                "com"
+              ],
+              "path": [
+                "api",
+                "verifyLogin"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "VL-03 Missing Password Copy",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const body = pm.response.json();\npm.test(\"HTTP status is 200\", function(){\n    pm.expect(pm.response.code).to.eql(200);\n});\npm.test(\"Business reponseCode is 400\", function(){\n    pm.expect(body.responseCode).to.eql(400);\n});\npm.test(\"Login message is correct\",function(){\n    pm.expect(body.message).to.eql(\"Bad request, email or password parameter is missing in POST request.\")\n})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "{{test_email}}",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "https://automationexercise.com/api/verifyLogin",
+              "protocol": "https",
+              "host": [
+                "automationexercise",
+                "com"
+              ],
+              "path": [
+                "api",
+                "verifyLogin"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "VL-04 Empty Password",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const body = pm.response.json();\npm.test(\"HTTP status is 200\", function(){\n    pm.expect(pm.response.code).to.eql(200);\n});\npm.test(\"Business reponseCode is 400\", function(){\n    pm.expect(body.responseCode).to.eql(404);\n});\npm.test(\"Login message is correct\",function(){\n    pm.expect(body.message).to.eql(\"User not found!\")\n})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "{{test_email}}",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "https://automationexercise.com/api/verifyLogin",
+              "protocol": "https",
+              "host": [
+                "automationexercise",
+                "com"
+              ],
+              "path": [
+                "api",
+                "verifyLogin"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
